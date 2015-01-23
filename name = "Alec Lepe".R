@@ -1,5 +1,0 @@
-name = "Alec Lepe"
-SID = "24211289"
-email = "lepealec@berkeley.edu"
-github_name = "lepealec"
-status = "enrolled"
