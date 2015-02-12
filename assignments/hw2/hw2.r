@@ -225,18 +225,10 @@ points(x=log(SO2012Ctry[SO2012Ctry$Total==0,]$GDP_per_person),y=log(SO2012Ctry[S
 # title, and label 5 of the more interesting points
 # with the country name. Use text() to do this.
 
-symbols(x=log(SO2012Ctry[SO2012Ctry$Total>0,]$GDP_per_person),main="Population, GDP Per Person, & Total Medals",y=log(SO2012Ctry[SO2012Ctry$Total>0,]$pop),xlab="GDP Per Person",
-ylab="Population",circles=sqrt(SO2012Ctry[SO2012Ctry$Total>0,]$Total)/30,inches=FALSE)
-points(x=log(SO2012Ctry[SO2012Ctry$Total==0,]$GDP_per_person),y=log(SO2012Ctry[SO2012Ctry$Total==0,]$pop),xlab="GDP Per Person",ylab="Population",circles=sqrt(SO2012Ctry[SO2012Ctry$Total==0,]$Total),pch=".")
-
-winning_countries=SO2012Ctry[SO2012Ctry$Total>40,]
-top5 <-SO2012Ctry$Country[SO2012Ctry$Total>40,]
-
-text(log(48792),log(399349000),"USA") #Most wins
-text(log(5450),log(1338300000),"China") #2nd Most wins
-text(log(43662.154),log(81777000),"Germany") #3rd most wins
-text(log(13105.96),log(141750000),"Russia") #4th most wins
-text(log(39072.98),log(62232000),"UK") #5th most wins
+top5 <-order(SO2012Ctry$Total, decreasing = TRUE)[1:5]
+symbols(x=log(SO2012Ctry[SO2012Ctry$Total>0,]$GDP_per_person),y = log(SO2012Ctry[SO2012Ctry$Total>0,]$pop),circles = sqrt(SO2012Ctry[SO2012Ctry$Total>0,]$Total/300), inches = FALSE, xlab = 'GDP per Person', ylab = 'Population (in thousands) - log scale',main = 'GDP per Person vs. GDP Per Person vs. Total Medal Count')
+points(x=log(SO2012Ctry[SO2012Ctry$Total==0,]$GDP_per_person),y = log(SO2012Ctry[SO2012Ctry$Total==0,]$pop),pch = '.')
+text(x=log(SO2012Ctry$GDP_per_person)[top5],y = log(SO2012Ctry$pop)[top5],SO2012Ctry$Country[top5], cex = c(1.2,1.1,1,.9,.8), col = 'red')
 
 # your plotting code here, including a new call to text() 
 ######################################
