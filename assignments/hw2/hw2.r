@@ -1,13 +1,3 @@
-
-#abline(v=...)
-#abline(h=...) adds a vertical or horizontal line
-
-symbols(x=mtcars$hp,y=mt=mtcars$disp, circles=sqrt(mtcars$carb),inches=FALSE)
-
-barplots
-cars.tab=table(mtcars$cyl,mtcars$gear)
-barplots(cars.tab, beside=TRUE)
-
 # HW 2
 # Graphics Skills
 # Due Thursday February 12th by midnight 
