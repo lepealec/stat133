@@ -68,10 +68,10 @@ recipeConversion = function(recipe){
   if (colnames(recipe)[1]=="amount" & colnames(recipe)[2]=="unit" & colnames(recipe)[3]=="ingredient"){
     cup_index=recipe$unit%in%c("cups","cup")
     recipe$unit[cup_index]="ml"
-    recipe$amount[cup_index]=round*((recipe$amount[cup_index]*236.6)/5)*5
+    recipe$amount[cup_index]=round((recipe$amount[cup_index]*236.6)/5)*5
     cup_index=recipe$unit%in%("oz") 
     recipe$unit[oz_index]="gr"
-    recipe$amount[oz_index]=round*((recipe$amount[oz_index]*28.3)/5)*5
+    recipe$amount[oz_index]=round((recipe$amount[oz_index]*28.3)/5)*5
     return (recipe)    
   } else {
     stop("Invalid column names!")
