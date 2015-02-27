@@ -39,8 +39,8 @@ powers <- function(x, k){
     }else{
       dimnames(power_matrix)=list(seq(1,length(x)),c("x",paste("x^",seq(2,k),sep="")))
     }
-    x.power=power_matrix
-    return (power_matrix)
+    x.powers=power_matrix
+    return (x.powers)
 }
 
 #### Function #3
