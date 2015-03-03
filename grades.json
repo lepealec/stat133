@@ -1,0 +1,23 @@
+{
+    "email": "lepealec@berkeley.edu", 
+    "github_name": "lepealec", 
+    "grades": {
+        "hw1": {
+            "note": "", 
+            "hash": "513b9a98a6544d2731002b65e95410269c14ea5c", 
+            "earned": 18, 
+            "possible": 20, 
+            "penalty": 0, 
+            "parts": {
+                "hw1": {
+                    "possible": 20, 
+                    "earned": 18
+                }
+            }
+        }
+    }, 
+    "login": "lepealec", 
+    "name": "Alec Lepe", 
+    "status": "enrolled", 
+    "url": "git@github.com:lepealec/stat133.git"
+}
