@@ -16,8 +16,7 @@ bml.init <- function(r, c, p){
   if (round(p*r*c)==0){
     stop("Invalid number of possible cars.") ; }
   if (round(p*r*c)==r*c){
-    stop ("No blank spaces.")
-  }
+    stop ("No blank spaces.") ; }
   m=matrix(sample(c(0,1,2), size = r*c, prob = c(1-p,p/2,p/2), replace = TRUE), nrow = r)
   blue_cars=length(m[m==2]) ; total=round(p*r*c)/2 ; red_cars=length(m[m==1])
   while (blue_cars>total){
@@ -70,8 +69,7 @@ bml.step <- function(m){
       if (loop==TRUE) {
         m[nrow,c]=2 ; m[1,c]=0
         } ; c=c+1 ; }
-        grid.new=identical(old,m)
-      return (list(m,grid.new)) ; }
+      return (list(m,identical(old,m))) ; }
 #### Function to do a simulation for a given set of input parameters
 ## Input : size of grid [r and c] and density [p]
 ## Output : *up to you* (e.g. number of steps taken, did you hit gridlock, ...)
@@ -79,19 +77,21 @@ bml.sim <- function(r, c, p){
   m=bml.step(bml.init(r,c,p))[[1]] ; counter = 0
   identical=FALSE ; rep=list(); rep2=list() ; counter2=1 ; counter3=1
   while (identical==FALSE){
+    if (counter==100){
+      return (list("U",counter,m)) ; }
     counter=counter+1 ; new_grid=bml.step(m)
     m=new_grid[[1]] ; identical=new_grid[[2]]
-    image(t(m)[,ncol(m):1],col=c("Black","Red","Blue"))
+	#Sys.sleep(0.1)									#wait and image the matrices
+    #image(t(m[nrow(m):1,]),col=c("White","Red","Blue"))
     if (counter2<=r){
       rep[[counter2]]=c(m)
     } else {
-      rep2[[counter2-r]]=c(m)
-    }
+      rep2[[counter2-r]]=c(m) ; }
     if (counter2==2*r){
        if (identical(rep2,rep)) {
-        return(list("Looping",counter))
+        return(list("L",counter,m))
        } else {
       counter2=0
     } ; }
     counter2=counter2+1 ; }
-  return(list("Gridlock",counter)) ; }
+  return(list("G",counter,m)) ; }
