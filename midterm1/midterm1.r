@@ -3,8 +3,8 @@
 # in the city of Berkeley.
 # calculate the mean lot size (lsqft) of houses in Berkeley. Store it as the
 # variables <mean.lsqft>.
-housing$lsqft[is.na(housing$lsqft)]=0
-housing$bsqft[is.na(housing$bsqft)]=0
+housing=housing[is.na(housing$lsqft)==FALSE,]
+housing=housing[is.na(housing$bsqft)==FALSE,]
 mean.lsqft <- mean(housing$lsqft)
 # How many unique area codes are there in the dataset?  Store them in the variable
 # <n.zipcode>
