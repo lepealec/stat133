@@ -19,5 +19,6 @@
     "login": "lepealec", 
     "name": "Alec Lepe", 
     "status": "enrolled", 
-    "url": "git@github.com:lepealec/stat133.git"
+    "url": "git@github.com:lepealec/stat133.git", 
+    "section": "lab5"
 }
