@@ -22,65 +22,55 @@
 #                 i.e. one row for each doctor
 #                 the entries are 0 for days where the doctor is a
 #                 non-adopter, else 1 (so once a row turns to 1 it stays as 1).
-library("ggplot2")
 sim.doctors <- function(initial.doctors, n.doctors, n.days, p){
-	if (p>1 | p<0){
-		stop("Invalid p value.")
-	}
-	if (length(initial.doctors)!=n.doctors){
-		stop("Length of initial doctors not equal to the number of doctors.")
-	}
-	has.adopted=matrix(data=initial.doctors,nrow=n.doctors,ncol=n.days)
-	for (i in seq(1,n.days)){
-		doctors=sample(seq(1,length(initial.doctors)),2)
-		if (initial.doctors[doctors[1]]!=initial.doctors[doctors[2]]){
-			if (initial.doctors[doctors[1]]==0){
-				initial.doctors[doctors[1]]=sample(c(0,1),prob=c(1-p,p),1)
-				has.adopted[c(doctors[1]),seq(i,n.days)]=1
-			} else {
-				initial.doctors[doctors[2]]=sample(c(0,1),prob=c(1-p,p),1)
-				has.adopted[c(doctors[2]),seq(i,n.days)]=1
-			}
-		}
-	}
-	return(has.adopted)
+  if (p>1 | p<0){
+    stop("Invalid p value.")
+  }
+  if (length(initial.doctors)!=n.doctors){
+    stop("Length of initial doctors not equal to the number of doctors.")
+  }
+  has.adopted=matrix(data=initial.doctors,nrow=n.doctors,ncol=n.days)
+  for (i in seq(1,n.days)){
+    doctors=sample(seq(1,length(initial.doctors)),2)
+    if (initial.doctors[doctors[1]]!=initial.doctors[doctors[2]]){
+      if (initial.doctors[doctors[1]]==0){
+      	change=sample(c(0,1),prob=c(1-p,p),1)
+        initial.doctors[doctors[1]]=change
+        has.adopted[c(doctors[1]),seq(i,n.days)]=change
+      } 
+      if (initial.doctors[doctors[2]]==0) {
+      	change=sample(c(0,1),prob=c(1-p,p),1)
+        initial.doctors[doctors[2]]=change
+        has.adopted[c(doctors[2]),seq(i,n.days)]=change
+      }
+    }
+  }
+  return(has.adopted)
 }
 set.seed(42)
 initial.doctors=sample(c(0,1),prob=c(0.9,0.1),size=100,rep=TRUE)
 simulate=function(days=seq(10,1000,10),initial_doctors=initial.doctors,p){
-	n.doctors=c()
-	for (i in days){
-		converted=0 ; has.adopted=sim.doctors(initial_doctors,length(initial_doctors),i,p)
-		for (j in seq(1,nrow(has.adopted))){
-			if (1 %in% (has.adopted[j,])){
-				converted=converted+1
-			}
-		}
-		n.doctors[i/(days[2]-days[1])]=converted
-	}
-	return(list(days,n.doctors))
+  n.doctors=c()
+  for (i in days){
+    has.adopted=sim.doctors(initial_doctors,length(initial_doctors),i,p)
+    for (j in seq(1,nrow(has.adopted))){
+        converted=sum(has.adopted[,ncol(has.adopted)])
+    }
+    n.doctors[i/(days[2]-days[1])]=converted
+  }
+  return(list(days,n.doctors))
 }
 data1=simulate(p=0.1)
-data2=simulate(p=0.2)
-data3=simulate(p=0.3)
-data4=simulate(p=0.4)
-data5=simulate(p=0.5)
-data6=simulate(p=0.6)
-data7=simulate(p=0.7)
-data8=simulate(p=0.8)
-data9=simulate(p=0.9)
-data10=simulate(p=1)
+data2=simulate(p=0.25)
+data3=simulate(p=0.5)
+data4=simulate(p=0.75)
+data5=simulate(p=0.9)
 
-gplot=ggplot()
-gplot=gplot+geom_line(size=1,aes(x=data1[[1]], y=data1[[2]]),color="Red")
-gplot=gplot+geom_line(size=1,aes(x=data2[[1]], y=data2[[2]]),color="Orange")
-gplot=gplot+geom_line(size=1,aes(x=data3[[1]], y=data3[[2]]),color="Yellow")
-gplot=gplot+geom_line(size=1,aes(x=data4[[1]], y=data4[[2]]),color="Purple")
-gplot=gplot+geom_line(size=1,aes(x=data5[[1]], y=data5[[2]]),color="Blue")
-gplot=gplot+geom_line(size=2,aes(x=data6[[1]], y=data6[[2]]),color="Red")
-gplot=gplot+geom_line(size=2,aes(x=data7[[1]], y=data7[[2]]),color="Orange")
-gplot=gplot+geom_line(size=2,aes(x=data8[[1]], y=data8[[2]]),color="Yellow")
-gplot=gplot+geom_line(size=2,aes(x=data9[[1]], y=data9[[2]]),color="Purple")
-gplot=gplot+geom_line(size=2,aes(x=data10[[1]], y=data10[[2]]),color="Blue")
-gplot=gplot+xlab("Days")+ylab("Converted Doctors")+ggtitle("Converted doctors vs Days")
-gplot
+plot(x=data1[[1]],y=data1[[2]],xlab="Days",ylab="Converted Doctors",col="Red",type="l",ylim=c(10,100))
+lines(x=data2[[1]],y=data2[[2]],col="Orange")
+lines(x=data3[[1]],y=data3[[2]],col="Yellow")
+lines(x=data4[[1]],y=data4[[2]],col="Purple")
+lines(x=data5[[1]],y=data5[[2]],col="Blue")
+legend("topleft",cex=0.65,fill=c("Red","Orange","Yellow","Purple","Blue"),c("0.1","0.25","0.5","0.75","0.9"))
+
+
