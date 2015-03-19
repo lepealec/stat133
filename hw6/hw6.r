@@ -49,7 +49,7 @@ sim.doctors <- function(initial.doctors, n.doctors, n.days, p){
 }
 set.seed(42)
 initial.doctors=sample(c(0,1),prob=c(0.9,0.1),size=100,rep=TRUE)
-simulate=function(days=seq(10,1000,10),initial_doctors=initial.doctors,p){
+simulate=function(days=seq(1,1000,1),initial_doctors=initial.doctors,p){
   n.doctors=c()
   for (i in days){
     has.adopted=sim.doctors(initial_doctors,length(initial_doctors),i,p)
@@ -60,6 +60,7 @@ simulate=function(days=seq(10,1000,10),initial_doctors=initial.doctors,p){
   }
   return(list(days,n.doctors))
 }
+#~two minute run time
 data1=simulate(p=0.1)
 data2=simulate(p=0.25)
 data3=simulate(p=0.5)
