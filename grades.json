@@ -14,6 +14,19 @@
                     "earned": 18
                 }
             }
+        }, 
+        "hw4": {
+            "note": "", 
+            "hash": "ef34fa2e7f93251dfa959a002e5af0fd1ab03db6", 
+            "earned": 17, 
+            "possible": 20, 
+            "penalty": 0, 
+            "parts": {
+                "hw4": {
+                    "possible": 20, 
+                    "earned": 17
+                }
+            }
         }
     }, 
     "login": "lepealec", 
