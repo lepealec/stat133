@@ -298,3 +298,4 @@ plot(speechesDF$year, speechesDF$word, xlab="Year", ylab="Words")
 plot(speechesDF$year, speechesDF$char, xlab="Year", ylab="Characters")
 plot(speechesDF$year, speechesDF$char/speechesDF$word, xlab="Year", ylab="average word length")
 plot(speechesDF$year, speechesDF$word/speechesDF$sent, xlab="Year", ylab="average sentence length")
+s
