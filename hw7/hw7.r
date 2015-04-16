@@ -216,10 +216,9 @@ presidentWordMat=sapply(split(data.frame(t(wordMat)),speechesDF$Pres),colSums)
   # Document Frequency
   # [docFreq]: vector of the same length as [uniqueWords], 
 # count the number of presidents that used the word
-index_of_presidents=c()
-newPresMat=presidentWordMat
-newPresMat[newPresMat>=1]=1
-docFreq=rowSums(newPresMat[,1:length(unique(presidents))])
+doc=presidentWordMat
+doc[doc>=1]=1
+docFreq=rowSums(doc[,1:length(unique(presidents))])
 
   # Call the function computeSJDistance() with the arguments
   # presidentWordMat, docFreq and uniqueWords
@@ -261,9 +260,7 @@ cols <-  rainbow(length(unique(speechesDF$party)))
   # col = cols[presParty[rownames(presDist)]]
   
 plot(mds,xlab="",ylab="",type="n",main="Presidents")
-text(mds, unique(presidents), col = cols[presParty])
-
-
+text(mds, unique(presidents), col = cols[presParty]) 
 ### Use hierarchical clustering to produce a visualization of  the results.
 # Compare the two plots.
 hc = hclust(as.dist(presDist))
@@ -277,7 +274,6 @@ plot(hc)
 # x-axis: speech year, y-axis: average word length (char/word)
 # x-axis: speech year, y-axis: average sentence length (word/sent)
 # your plot statements below:
-
 plot(speechesDF$year, speechesDF$sent, xlab="Year", ylab="Sentences")
 plot(speechesDF$year, speechesDF$word, xlab="Year", ylab="Words")
 plot(speechesDF$year, speechesDF$char, xlab="Year", ylab="Characters")
