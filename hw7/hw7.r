@@ -268,7 +268,7 @@ for (i in seq(1,length(unique(presidents)))){
 }
   # use rainbow() to pick one unique color for each party (there are 6 parties)
   
-  cols <-  rainbow(length(unique(speechesDF$party)))
+presParty <- tapply(speechesDF$party, speechesDF$Pres, function(x) x[1])  cols <-  rainbow(length(unique(speechesDF$party)))
   
   # Now we are ready to plot again.
   # First plot mds by calling plot() with type='n' (it will create the axes but not plot the points)
@@ -276,8 +276,9 @@ for (i in seq(1,length(unique(presidents)))){
   # then call text() with the presidents' names as labels and the color argument
   # col = cols[presParty[rownames(presDist)]]
   
-plot(mds,xlab="",ylab="",col=cols,main="Presidents")
-text(mds, rownames(presDist), col = cols[presParty[rownames(presDist)]]) #error
+plot(mds,xlab="",ylab="",type="n",main="Presidents")
+text(mds, unique(presidents), col = cols[presParty])
+
 
 ### Use hierarchical clustering to produce a visualization of  the results.
 # Compare the two plots.
