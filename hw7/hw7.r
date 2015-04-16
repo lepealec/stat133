@@ -217,34 +217,16 @@ presidentWordMat=sapply(split(data.frame(t(wordMat)),speechesDF$Pres),colSums)
   # [docFreq]: vector of the same length as [uniqueWords], 
 # count the number of presidents that used the word
 index_of_presidents=c()
-for (i in unique(presidents)){
-  index_of_presidents[[which(unique(presidents)==i)]]=which(presidents==i)
-}
-for (i in seq(1,length(speechesL))){
-  speech=table(speechWords[i])
-  wordMat[names(speech),i]=as.vector(speech)  
-}
-docFreq=matrix(data=0,ncol=length(index_of_presidents),nrow=nrow(wordMat))
-dimnames(docFreq)=list(uniqueWords,seq(1,length(index_of_presidents)))
-for (i in seq(1,length(index_of_presidents))){
-  vec=matrix(data=0,ncol=1,nrow=nrow(wordMat))
-  for (q in seq(1,length(index_of_presidents[[i]]))){
-    vec=vec+as.vector(wordMat[,index_of_presidents[[i]][q]])
-  }
-  vec[vec!=0]=1
-  docFreq[,i]=vec
-}
-for (w in seq(1,nrow(docFreq))){
-  docFreq[w,]=sum(docFreq[w,])
-}
-docFreq=as.vector(docFreq[,1])
-  
+newPresMat=presidentWordMat
+newPresMat[newPresMat>=1]=1
+docFreq=rowSums(newPresMat[,1:length(unique(presidents))])
+
   # Call the function computeSJDistance() with the arguments
   # presidentWordMat, docFreq and uniqueWords
   # and save the return value in the matrix [presDist]
   
   presDist <- computeSJDistance(tf=presidentWordMat, df=docFreq, terms=uniqueWords)
-dimnames(presDist)=list(unique(presidents),unique(presidents))
+  dimnames(presDist)=list(unique(presidents),unique(presidents))
 ## Visuzlise the distance matrix using multidimensional scaling.
 # Call the function cmdscale() with presDist as input.
 # Store the result in the variable [mds] by 
@@ -268,7 +250,9 @@ for (i in seq(1,length(unique(presidents)))){
 }
   # use rainbow() to pick one unique color for each party (there are 6 parties)
   
-presParty <- tapply(speechesDF$party, speechesDF$Pres, function(x) x[1])  cols <-  rainbow(length(unique(speechesDF$party)))
+presParty <- tapply(speechesDF$party, speechesDF$Pres, function(x) x[1])  
+
+cols <-  rainbow(length(unique(speechesDF$party)))
   
   # Now we are ready to plot again.
   # First plot mds by calling plot() with type='n' (it will create the axes but not plot the points)
