@@ -6,7 +6,7 @@ getData = function(coefs = c(0, 1, 1), xs = 1:5, dupl = 10,
   set.seed(seed)
   x = rep(xs, each = dupl)
   y = coefs[1] + coefs[2]*x + coefs[3] * x^2 + 
-      rnorm(length(x), 0, sd)
+    rnorm(length(x), 0, sd)
   return(data.frame(x, y))
 }
 ###
@@ -96,7 +96,7 @@ bootPlot = function(x, y, coeff, trueCoeff){
   plot(x,y,col="black")
   if (ncol(coeff)==2){
     for (i in seq(1,nrow(coeff))){
-      abline(coef=coeff[i,])
+      abline(coef=coeff[i,],col=rgb(0,0,0.9,0.1))
     }
     q=seq(min(x),max(x),0.001)
     lines(q,trueCoeff[1]+trueCoeff[2]*q+trueCoeff[3]*q*q,col="Red",cex=2)
@@ -104,8 +104,8 @@ bootPlot = function(x, y, coeff, trueCoeff){
   if (ncol(coeff)==3){
     for (i in seq(1,nrow(coeff))){
       q=seq(min(x),max(x),0.001)
-      lines(q,coeff[i,][1]+coeff[i,][2]*q+coeff[i,][3]*q*q,col="Black")
-      }
+      lines(q,coeff[i,][1]+coeff[i,][2]*q+coeff[i,][3]*q*q,col=rgb(0,0,0.9,0.1))
+    }
     lines(q,trueCoeff[1]+trueCoeff[2]*q+trueCoeff[3]*q*q,col="Red",cex=2)
   }
 }
@@ -119,8 +119,8 @@ runSim = function() {
   expt = repBoot(data = myData)
   par(mfrow = c(2, 2))
   for (i in 1:4){
-   bootPlot(myData$x, myData$y, 
-            coeff = expt[[i]], trueCoeff) 
+    bootPlot(myData$x, myData$y, 
+             coeff = expt[[i]], trueCoeff) 
   }
   return(expt)
 }
