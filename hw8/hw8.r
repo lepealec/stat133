@@ -107,8 +107,8 @@ bootPlot = function(x, y, coeff, trueCoeff){
       lines(q,coeff[i,][1]+coeff[i,][2]*q+coeff[i,][3]*q*q,col="Black")
       }
     lines(q,trueCoeff[1]+trueCoeff[2]*q+trueCoeff[3]*q*q,col="Red",cex=2)
-    }
   }
+}
 
 ### Run your simulation by calling this function
 ### This function doesn't need any changing
