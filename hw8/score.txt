@@ -1,0 +1,3 @@
+use mapply/replicate as instructed to avoid for loops in R  -1
+
+Score: 19/20
