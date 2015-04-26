@@ -20,9 +20,8 @@ library('googleVis')
 # https://developers.google.com/chart/interactive/docs/gallery/bubblechart
 # To do this in R, use the 'gvisBubbleChart' function. 
 # Make sure you read and understand its arguments:
-?gvisBubbleChart
+#gvisBubbleChart
 # For this bubble chart we will use the built-in dataset 'mtcars':
-head(mtcars)
 # Introduce a new column to the dataset, 
 # The column should be called "model" and it should have the names of car models 
 # (i.e. the current row names).
@@ -34,7 +33,6 @@ colnames(mtcars)[12]='model'
 # use 'hp' to represent size of bubbles;
 # Use levels of 'gear' to represent color of bubbles;
 # Finally use the 'options' argument to add axis labels and main title.
-# ???
 optionlist <- list(hAxis = '{title: "Display"}',vAxis = '{title: "MPG"}', title = "Car Bubble", height=800)
 bub <- gvisBubbleChart(mtcars,idvar='model',xvar='disp',yvar='mpg',sizevar='hp',colorvar='gear',options=optionlist)
 
@@ -47,7 +45,7 @@ plot(bub)
 # https://developers.google.com/chart/interactive/docs/gallery/motionchart
 # To do this in R, use the 'gvisMotionChart' function. 
 # Make sure you read and understand its arguments:
-?gvisMotionChart
+#?gvisMotionChart
 # We will be using the 'WorldBank' dataset containing information of countries,
 # such as fertility rate, life expectancy, population, GDP per capita, etc.
 load("WorldBank.RData")
@@ -64,7 +62,7 @@ WorldDat <- data.frame(WorldBank$country,
                        
 # As you can see, there are missing values in this data frame.
 # Get rid of all rows with one or more NAs.
-#colnames(WorldDat)=c('country','year','fertility.rate','life.expectancy','population','region')
+colnames(WorldDat)=c('country','year','fertility.rate','life.expectancy','population','region')
 WorldDat=na.omit(WorldDat)
 # Now make the motion chart using <WorldDat>:
 # (at this point is should have 6 columns and should be free of missing values)
@@ -72,12 +70,12 @@ WorldDat=na.omit(WorldDat)
 # with 'year' as the time dimension, 'region' as the color vector, 'population' as the size vector.
 # Notice that you can change theses vectors on the generated motion chart, 
 # for now just use the above instructions as default.
-Motion <- gvisMotionChart(WorldDat,idvar='WorldBank.country',
-                          timevar='WorldBank.year',
-                          xvar='WorldBank.fertility.rate',
-                          yvar='WorldBank.life.expectancy',
-                          sizevar='WorldBank.population',
-                          colorvar='WorldBank.region')
+Motion <- gvisMotionChart(WorldDat,idvar='country',
+                          timevar='year',
+                          xvar='fertility.rate',
+                          yvar='life.expectancy',
+                          sizevar='population',
+                          colorvar='region')
 
 # Plot your motion chart. It should appear in your web browser. Play around with it!
 plot(Motion)
