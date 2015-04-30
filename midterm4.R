@@ -2,6 +2,7 @@
 #### Stat 133 Midterm 4
 # leave this here:
 set.seed(123456)
+library("stringr")
 #### Simulation
 # Write a function, [dice_sum()], that takes as input:
 # [k] : the number of dice rolled
@@ -15,8 +16,8 @@ set.seed(123456)
 # We've set the default inputs to k=2 and B=100
 dice_sum <- function(k=2, B=100){
   dsum=c()
-  for (i in seq(1,B){
-    dsum[i]=sumsample(c(1,2,3,4,5,6),k,rep=T)
+  for (i in seq(1,B)){
+    dsum[i]=sum(sample(c(1,2,3,4,5,6),k,rep=T))
   }
     return(dsum)
 }
