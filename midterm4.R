@@ -68,7 +68,7 @@ updateDate <- function(dates, old.yr) {
   updated.dates=c()
   for (i in seq(1,length(dates))){
     if (length(grep(old.yr,dates[i]))==1){
-      updated.dates[length(updated.dates)+1]=paste(paste(str_extract(dates[1],"[[:alpha:]]*"),",",sep=""),2015)
+      updated.dates[length(updated.dates)+1]=paste(paste(str_extract(dates[i],"[[:alpha:]]*"),",",sep=""),2015)
     }
   }
   return (updated.dates)
