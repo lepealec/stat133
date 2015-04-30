@@ -1,6 +1,5 @@
 ###########################################################
 #### Stat 133 Midterm 4
-
 # leave this here:
 set.seed(123456)
 #### Simulation
@@ -53,7 +52,7 @@ even <- paste("even",seq(from=2,by=2,len=1000),sep="")
 # Also, convert all upper case letters to lower case.
 # Please remove all punctuation marks.
 hotelCal <- "On a dark desert highway, cool wind in my hair. Warm smell of colitas, rising up through the air. Up ahead in the distance, I saw a shimmering light. My head grew heavy and my sight grew dim I had to stop for the night.  There she stood in the doorway; I heard the mission bell.  And I was thinking to myself: 'This could be heaven or this could be hell'. Then she lit up a candle and she showed me the way."
-hotelCal.split = strsplit(gsub("[[:punct:]]","",tolower(hotelCal))," ")
+hotelCal.split = unlist(strsplit(gsub("[[:punct:]]","",tolower(hotelCal))," "))
 # Write a function called updateDate. Your function should take the following
 # arguments
 #   <dates>: a character vector of dates of the form "month, year" (e.g. "May, 2001")
