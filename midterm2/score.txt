@@ -1,0 +1,8 @@
+y  -1
+t  -2
+mw: return is NA  -2
+line 95: wrong color options  -1
+line 108: wrong plot  -2
+cache: use apply functions as instructed  -1
+
+Score: 24/33
