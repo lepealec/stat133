@@ -1,0 +1,18 @@
+Total: 18/20
+
+Function 1
+5/5
+
+Function 2
+5/5
+
+Function 3
+5/5
+
+Function 4
+3/5
+Your idea is sounds and barring a few bugs it works. But 
+there are more efficient solutions in R e.g. after
+strsplit you could have tab <- table(charvec) then find the names
+of the entries which achieve max(tab) with 
+names(tab)[tab == max(tab)]
