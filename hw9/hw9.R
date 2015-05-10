@@ -36,6 +36,7 @@ colnames(mtcars)[12]='model'
 optionlist <- list(hAxis = '{title: "Display"}',vAxis = '{title: "MPG"}', title = "Car Bubble", height=800)
 bub <- gvisBubbleChart(mtcars,idvar='model',xvar='disp',yvar='mpg',sizevar='hp',colorvar='gear',options=optionlist)
 
+# Something was wrong here, plot doesn't show up. -2 points Andy
 # Now plot your bubble chart output, 'bub', 
 # the chart will show up in a new tab in your web browser.
 plot(bub)
