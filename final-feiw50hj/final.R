@@ -376,7 +376,7 @@ text5 <- phrases[grep("[[:punct:]]",phrases)]
 # Create a vector [phrases2] where you have replaced the first instance of the letter "a" in each word with "@"
 phrases2 <- sub("a{1}","@",phrases)
 
-# [2 pts]
+# [2 pts]s
 dna <- c("AGGATGATT", "AGCCTTAGC", "AGAGAGCT", "AGTTTCGTA", "CGTGGTGC", "CTAAGTGAC", "GTGGGACC", "GGTAGAGAC", "TAGATTACC")
 # Create a vector [match1] with the index for all matches to "A*T" or "G*T"
 match1 <- unique(sort(c(grep("AT",dna),grep("GT",dna))))
