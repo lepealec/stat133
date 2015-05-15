@@ -163,7 +163,11 @@ text(1975,230,wr_1998) #add name to describe second vertical line
 
 # The data frame SO2012Ctry contains this information.
 # It can be loaded into R with
-load("~/src/stat133/assignments/hw2/SummerOlympics2012Ctry.rda"))
+
+# load("~/src/stat133/assignments/hw2/SummerOlympics2012Ctry.rda"))
+load("SummerOlympics2012Ctry.rda")
+
+
 #Q6 Take a look at the variables in this data frame.
 # What kind of variable is GDP and population?
 
@@ -219,7 +223,9 @@ symbols(x=log(SO2012Ctry$GDP_per_person),y=log(SO2012Ctry$pop),xlab="GDP Per Per
 # plotting character.
 
 symbols(x=log(SO2012Ctry[SO2012Ctry$Total>0,]$GDP_per_person),y=log(SO2012Ctry[SO2012Ctry$Total>0,]$pop),xlab="GDP Per Person",ylab="Population",circles=sqrt(SO2012Ctry[SO2012Ctry$Total>0,]$Total))
-points(x=log(SO2012Ctry[SO2012Ctry$Total==0,]$GDP_per_person),y=log(SO2012Ctry[SO2012Ctry$Total==0,]$pop),xlab="GDP Per Person",ylab="Population",circles=sqrt(SO2012Ctry[SO2012Ctry$Total==0,]$Total),pch=".")
+points(x=log(SO2012Ctry[SO2012Ctry$Total==0,]$GDP_per_person),y=log(SO2012Ctry[SO2012Ctry$Total==0,]$pop),
+       xlab="GDP Per Person",ylab="Population",pch=".")
+       # circles=sqrt(SO2012Ctry[SO2012Ctry$Total==0,]$Total),pch=".")
 
 # Q9. Make the plot information rich by adding axis labels, 
 # title, and label 5 of the more interesting points
@@ -239,7 +245,7 @@ text(x=log(SO2012Ctry$GDP_per_person)[top5],y = log(SO2012Ctry$pop)[top5],SO2012
 # Make a map of the world, using the function map(),
 # where the countries are filled with a light grey color.
 ## you only need to run these two lines once:
-install.packages("maps") #only run once
+# install.packages("maps") #only run once
 library("maps")
 
 world <- map(database="world",fill=TRUE,col=8)
@@ -273,14 +279,15 @@ symbols(x=wonMedal$longitude,y=wonMedal$latitude,circles=sqrt(wonMedal$Total)*2,
 # e.g. myColor = "#FEB24CAA" or   "#FEB24C88"
 
 # You only need to call these two lines once:
-install.packages("RColorBrewer")
+# install.packages("RColorBrewer")
 library("RColorBrewer")
 display.brewer.all()
 brewer.pal(6,"Set2")
 myGold <- "#FFD92F88"
 
 world=map(database="world",fill=TRUE,col=8)
-symbols(x=wonMedal$longitude,y=wonMedal$latitude,circles=sqrt(wonMedal$Total)*2,add=TRUE,inches=FALSE,mg=myGold)
+symbols(x=wonMedal$longitude,y=wonMedal$latitude,circles=sqrt(wonMedal$Total)*2,add=TRUE,inches=FALSE)
+        # ,mg=myGold)
 
 ## That was the FINAL version of this plot
 
@@ -294,7 +301,9 @@ symbols(x=wonMedal$longitude,y=wonMedal$latitude,circles=sqrt(wonMedal$Total)*2,
 # and contains information about every athlete who competed 
 # in the Olympics.
 
-load("~/src/stat133/assignments/hw2/London2012ALL_ATHLETES.rda")
+# load("~/src/stat133/assignments/hw2/London2012ALL_ATHLETES.rda")
+load("London2012ALL_ATHLETES.rda")
+
 
 # There is one observation for each athlete. 
 # (Actually, about 20 athletes have two records if they
