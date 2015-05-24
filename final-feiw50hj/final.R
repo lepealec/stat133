@@ -343,10 +343,16 @@ NumJackpot <- function(k, B){
 # For B = 1000 and each value of k = 100, 500, 1000, 5000
 # Plot a histogram of the output from NumJackpot (i.e. four histograms)
 par(mfrow=c(2,2))
-hist(NumJackpot(100,1000))
-hist(NumJackpot(500,1000))
-hist(NumJackpot(1000,1000))
-hist(NumJackpot(5000,1000))
+## inga edited
+#hist(NumJackpot(100,1000))
+#hist(NumJackpot(500,1000))
+#hist(NumJackpot(1000,1000))
+#hist(NumJackpot(5000,1000))
+hist(NumJackpot(100,100))
+hist(NumJackpot(500,100))
+hist(NumJackpot(1000,100))
+hist(NumJackpot(5000,100))
+
 #################################################################
 ##### PART VI : string manipulation and regular expressions [20 pts]
 
